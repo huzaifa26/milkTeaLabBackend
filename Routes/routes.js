@@ -5,7 +5,7 @@ import { addAnnouncement, getAnnouncement, updateAnnouncement, deleteAnnouncemen
 import { addMaterial, getMaterial, updateMaterial, deletematerial } from '../Controllers/material.js';
 import { addTraining, getTraining, updateTraining, deleteTraining } from '../Controllers/training.js';
 import { addExam, getExam, updateExam, deleteExam } from '../Controllers/exam.js';
-import { addQuestion } from '../Controllers/question.js';
+import { addQuestion,getQuestion } from '../Controllers/question.js';
 
 router.post("/signup",signup);
 router.post("/signin",signin);
@@ -31,5 +31,6 @@ router.put("/exam",updateExam);
 router.delete("/exam/:id",deleteExam);
 
 router.post("/question",addQuestion);
+router.get("/question/:examId",getQuestion);
 
 export default router;

@@ -13,3 +13,17 @@ export const addQuestion=(req,res,next)=>{
         res.send({status:"ok",res:results});
     })
 }
+
+export const getQuestion=(req,res,next)=>{
+    const {examId}=req.params;
+
+    connection.query("SELECT * from question where examId=?",[+examId],(error, results, fields)=>{
+        if(error){
+            console.log(error);
+            res.status(409).send({status:"failed",err:error});
+            return
+        }
+        console.log(results);
+        res.send({status:"ok",res:results});
+    })
+}
