@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 const corsOptions ={
     origin:'http://localhost:3000', 
-    credentials:true,            //access-control-allow-credentials:true
+    credentials:true,
     optionSuccessStatus:200
 }
 
@@ -27,13 +27,10 @@ connection.connect(function(err) {
       console.error('error connecting: ' + err.stack);
       return;
     }
-   
     console.log('connected as id ' + connection.threadId);
 });
 
-  app.use('/api', router);
-
-
+app.use('/api', router);
 
 app.listen(5000, () => {
     console.log(`App started on Port ${process.env.PORT}`);
