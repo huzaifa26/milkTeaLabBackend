@@ -22,7 +22,15 @@ app.use(cors(corsOptions));
 //     database : 'milktealab',
 //   });
   
-export var connection = mysql.createConnection({
+// export var connection = mysql.createConnection({
+//     host     : '35.206.112.94',
+//     user     : 'u9rxwgdcttirs',
+//     password : 'uwcvkxbwkysz',
+//     database : 'dbioubfx6ghrre',
+//   });
+
+  export var connection  = mysql.createPool({
+    connectionLimit:20,
     host     : '35.206.112.94',
     user     : 'u9rxwgdcttirs',
     password : 'uwcvkxbwkysz',
@@ -36,14 +44,9 @@ export var connection = mysql.createConnection({
 //   database : process.env.DATABASENAME,
 // });
 
-connection.connect(function(err) {
-    if (err) {
-      console.log('error connecting');
-      // return;
-    }
-    console.log('connected as id ' + connection.threadId);
-});
-
+// connection.connect(()=>{
+//     console.log('connected as id ' + connection.threadId);
+// });
 
 app.get("/",(req,res)=>{
   res.send("working")
