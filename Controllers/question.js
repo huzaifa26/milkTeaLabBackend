@@ -105,3 +105,30 @@ export const addResult=(req,res,next)=>{
         })
     })
 }
+
+
+export const getResult=(req,res,next)=>{
+    const {}=req.body;
+    connection.query("select * from result where uId=?",[uId],(error, results, fields)=>{
+        if(error){
+            console.log(error);
+            res.status(409).send({status:"failed",err:error});
+            return
+        }
+
+        for(let i=0;i<results.length;i++){
+            connection.query("select * from exam where id=?",[results[i].examId],(error, results1, fields)=>{
+                if(error){
+                    console.log(error);
+                    res.status(409).send({status:"failed",err:error});
+                    return
+                }
+                results[i].exam=results1
+            })
+            if(i === results.length-1){
+                res.send({status:"ok",res:results});
+            }
+        }
+
+    })
+}

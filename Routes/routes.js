@@ -5,10 +5,14 @@ import { addAnnouncement, getAnnouncement, updateAnnouncement, deleteAnnouncemen
 import { addMaterial, getMaterial, updateMaterial, deletematerial } from '../Controllers/material.js';
 import { addTraining, getTraining, updateTraining, deleteTraining } from '../Controllers/training.js';
 import { addExam, getExam, updateExam, deleteExam } from '../Controllers/exam.js';
-import { addQuestion,deleteQuestion,getQuestion, updateQuestion,addAttemptedQuestion, addResult } from '../Controllers/question.js';
+import { addQuestion,deleteQuestion,getQuestion, updateQuestion,addAttemptedQuestion, addResult,getResult } from '../Controllers/question.js';
 import { addConversation, getConversation } from '../Controllers/converstion.js';
 import { addMessage, getMessage } from '../Controllers/message.js';
 import { getUser } from '../Controllers/user.js';
+
+router.get("/test",(req,res)=>{
+    res.send("working");
+})
 
 router.post("/signup",signup);
 router.post("/signin",signin);
@@ -40,6 +44,7 @@ router.delete("/question/:id",deleteQuestion);
 router.post("/attemptedQuestion",addAttemptedQuestion);
 
 router.post("/result",addResult);
+router.get("/result/uid",getResult);
 
 router.post("/conversation",addConversation);
 router.get("/conversation/:uId",getConversation);
