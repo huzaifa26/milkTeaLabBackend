@@ -24,8 +24,8 @@ app.use(cors(corsOptions));
   
 export var connection = mysql.createConnection({
     host     : '35.206.112.94',
-    user     : 'uiy7y6d2dou1f',
-    password : 'Abc123456!!',
+    user     : 'u9rxwgdcttirs',
+    password : 'uwcvkxbwkysz',
     database : 'dbioubfx6ghrre',
   });
 
@@ -38,8 +38,8 @@ export var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) {
-      console.error('error connecting: ' + err.stack);
-      return;
+      console.log('error connecting');
+      // return;
     }
     console.log('connected as id ' + connection.threadId);
 });
