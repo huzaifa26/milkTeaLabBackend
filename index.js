@@ -32,6 +32,6 @@ export var connection = mysql.createConnection({
 
 app.use('/api', router);
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log(`App started on Port ${process.env.PORT}`);
 });
