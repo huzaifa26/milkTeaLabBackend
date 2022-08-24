@@ -30,8 +30,13 @@ export var connection = mysql.createConnection({
 //     console.log('connected as id ' + connection.threadId);
 // });
 
+
+app.get("/",(req,res)=>{
+  res.send("working")
+})
+
 app.use('/api', router);
 
 app.listen(process.env.PORT || 5000, ()=>{
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+    console.log("App running on port:"+process.env.PORT);
 });

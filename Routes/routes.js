@@ -10,10 +10,6 @@ import { addConversation, getConversation } from '../Controllers/converstion.js'
 import { addMessage, getMessage } from '../Controllers/message.js';
 import { getUser } from '../Controllers/user.js';
 
-router.get("/test",(req,res)=>{
-    res.send("working");
-})
-
 // router.post("/signup",signup);
 // router.post("/signin",signin);
 
