@@ -5,7 +5,10 @@ import { addAnnouncement, getAnnouncement, updateAnnouncement, deleteAnnouncemen
 import { addMaterial, getMaterial, updateMaterial, deletematerial } from '../Controllers/material.js';
 import { addTraining, getTraining, updateTraining, deleteTraining } from '../Controllers/training.js';
 import { addExam, getExam, updateExam, deleteExam } from '../Controllers/exam.js';
-import { addQuestion,getQuestion } from '../Controllers/question.js';
+import { addQuestion,deleteQuestion,getQuestion, updateQuestion,addAttemptedQuestion, addResult } from '../Controllers/question.js';
+import { addConversation, getConversation } from '../Controllers/converstion.js';
+import { addMessage, getMessage } from '../Controllers/message.js';
+import { getUser } from '../Controllers/user.js';
 
 router.post("/signup",signup);
 router.post("/signin",signin);
@@ -32,5 +35,20 @@ router.delete("/exam/:id",deleteExam);
 
 router.post("/question",addQuestion);
 router.get("/question/:examId",getQuestion);
+router.put("/question/",updateQuestion);
+router.delete("/question/:id",deleteQuestion);
+router.post("/attemptedQuestion",addAttemptedQuestion);
+
+router.post("/result",addResult);
+
+router.post("/conversation",addConversation);
+router.get("/conversation/:uId",getConversation);
+
+router.post("/message",addMessage);
+router.get("/message/:cId",getMessage);
+
+router.get("/user",getUser);
+
+
 
 export default router;
