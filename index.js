@@ -15,20 +15,34 @@ dotenv.config();
 app.use(express.json());
 app.use(cors(corsOptions));
 
+// export var connection = mysql.createConnection({
+//     host     : 'localhost',
+//     user     : 'root',
+//     password : 'root',
+//     database : 'milktealab',
+//   });
+  
 export var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'root',
-    database : 'milktealab',
+    host     : '35.206.112.94',
+    user     : 'uiy7y6d2dou1f',
+    password : 'Abc123456!!',
+    database : 'dbioubfx6ghrre',
   });
 
-// connection.connect(function(err) {
-//     if (err) {
-//       console.error('error connecting: ' + err.stack);
-//       return;
-//     }
-//     console.log('connected as id ' + connection.threadId);
+// export var connection = mysql.createConnection({
+//   host     : process.env.HOSTNAME,
+//   user     : process.env.USERNAME,
+//   password : process.env.PASSWORD,
+//   database : process.env.DATABASENAME,
 // });
+
+connection.connect(function(err) {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+    console.log('connected as id ' + connection.threadId);
+});
 
 
 app.get("/",(req,res)=>{

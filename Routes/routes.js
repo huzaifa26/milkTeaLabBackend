@@ -10,45 +10,45 @@ import { addConversation, getConversation } from '../Controllers/converstion.js'
 import { addMessage, getMessage } from '../Controllers/message.js';
 import { getUser } from '../Controllers/user.js';
 
-// router.post("/signup",signup);
-// router.post("/signin",signin);
+router.post("/signup",signup);
+router.post("/signin",signin);
 
-// router.post("/announcement",addAnnouncement);
-// router.get("/announcement",getAnnouncement);
-// router.put("/announcement",updateAnnouncement);
-// router.delete("/announcement/:id",deleteAnnouncement);
+router.post("/announcement",addAnnouncement);
+router.get("/announcement",getAnnouncement);
+router.put("/announcement",updateAnnouncement);
+router.delete("/announcement/:id",deleteAnnouncement);
 
-// router.post("/material",addMaterial);
-// router.get("/material",getMaterial);
-// router.put("/material",updateMaterial);
-// router.delete("/material/:id",deletematerial);
+router.post("/material",addMaterial);
+router.get("/material",getMaterial);
+router.put("/material",updateMaterial);
+router.delete("/material/:id",deletematerial);
 
-// router.post("/training",addTraining);
-// router.get("/training",getTraining);
-// router.put("/training",updateTraining);
-// router.delete("/training/:id",deleteTraining);
+router.post("/training",addTraining);
+router.get("/training",getTraining);
+router.put("/training",updateTraining);
+router.delete("/training/:id",deleteTraining);
 
-// router.post("/exam",addExam);
-// router.get("/exam",getExam);
-// router.put("/exam",updateExam);
-// router.delete("/exam/:id",deleteExam);
+router.post("/exam",addExam);
+router.get("/exam",getExam);
+router.put("/exam",updateExam);
+router.delete("/exam/:id",deleteExam);
 
-// router.post("/question",addQuestion);
-// router.get("/question/:examId",getQuestion);
-// router.put("/question/",updateQuestion);
-// router.delete("/question/:id",deleteQuestion);
-// router.post("/attemptedQuestion",addAttemptedQuestion);
+router.post("/question",addQuestion);
+router.get("/question/:examId",getQuestion);
+router.put("/question/",updateQuestion);
+router.delete("/question/:id",deleteQuestion);
+router.post("/attemptedQuestion",addAttemptedQuestion);
 
-// router.post("/result",addResult);
-// router.get("/result/uid",getResult);
+router.post("/result",addResult);
+router.get("/result/uid",getResult);
 
-// router.post("/conversation",addConversation);
-// router.get("/conversation/:uId",getConversation);
+router.post("/conversation",addConversation);
+router.get("/conversation/:uId",getConversation);
 
-// router.post("/message",addMessage);
-// router.get("/message/:cId",getMessage);
+router.post("/message",addMessage);
+router.get("/message/:cId",getMessage);
 
-// router.get("/user",getUser);
+router.get("/user",getUser);
 
 
 
