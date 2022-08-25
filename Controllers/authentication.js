@@ -9,7 +9,7 @@ export const signup=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        console.log(results);
+        
         res.send({status:"ok",res:results});
     })
 }
@@ -22,7 +22,7 @@ export const signin=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        console.log(results);
+        
         res.send({status:"ok",res:results});
     })
 }

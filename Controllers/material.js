@@ -2,6 +2,8 @@ import { connection } from "../index.js";
 
 export const addMaterial=(req,res,next)=>{
     const {title,description,datetime,file}=req.body;
+    console.log("----------------req.body---------------");
+    console.log(req.body);
 
     connection.query("INSERT INTO material (title,description,createdTime,file) VALUES (?,?,?,?)",[title,description,datetime,file],(error, results, fields)=>{
         if(error){
@@ -9,7 +11,7 @@ export const addMaterial=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        console.log(results);
+        
         res.send({status:"ok",res:results});
     })
 }
@@ -21,7 +23,7 @@ export const getMaterial=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        console.log(results);
+        
         res.send({status:"ok",res:results});
     })
 }
@@ -36,7 +38,7 @@ export const updateMaterial=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        console.log(results);
+        
         res.send({status:"ok",res:results});
     })
 }
@@ -51,7 +53,7 @@ export const deletematerial=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        console.log(results);
+        
         res.send({status:"ok",res:results});
     })
 }

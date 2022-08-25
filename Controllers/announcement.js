@@ -9,7 +9,7 @@ export const addAnnouncement=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        console.log(results);
+        
         res.send({status:"ok",res:results});
     })
 }
@@ -22,7 +22,7 @@ export const getAnnouncement=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        console.log(results);
+        
         res.send({status:"ok",res:results});
     })
 }
@@ -37,7 +37,7 @@ export const updateAnnouncement=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        console.log(results);
+        
         res.send({status:"ok",res:results});
     })
 }
@@ -51,7 +51,7 @@ export const deleteAnnouncement=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        console.log(results);
+        
         res.send({status:"ok",res:results});
     })
 }
