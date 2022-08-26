@@ -5,7 +5,8 @@ import router from './Routes/routes.js';
 import dotenv from 'dotenv';
 
 const corsOptions ={
-    origin:'http://localhost:3000', 
+    origin:'*', 
+    // origin:'http://localhost:3000', 
     // origin:'https://huzaifa26.github.io', 
     credentials:true,
     optionSuccessStatus:200

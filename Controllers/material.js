@@ -2,7 +2,6 @@ import { connection } from "../index.js";
 
 export const addMaterial=(req,res,next)=>{
     const {title,description,datetime,file}=req.body;
-    console.log("----------------req.body---------------");
     console.log(req.body);
 
     connection.query("INSERT INTO material (title,description,createdTime,file) VALUES (?,?,?,?)",[title,description,datetime,file],(error, results, fields)=>{
