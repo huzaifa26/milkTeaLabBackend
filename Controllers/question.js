@@ -31,6 +31,7 @@ export const getQuestion=(req,res,next)=>{
 
 export const updateQuestion=(req,res,next)=>{
     const {examId,question,op1,op2,op3,op4,correctOp,createdTime,id}=req.body;
+    console.log(req.body);
 
     connection.query("UPDATE question set examId=?,question=?,op1=?,op2=?,op3=?,op4=?,correctOp=?,createdTime=? where id=?",[examId,question,op1,op2,op3,op4,correctOp,createdTime,id],(error, results, fields)=>{
         if(error){
