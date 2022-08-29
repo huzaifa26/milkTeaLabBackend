@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import { signup,signin } from '../Controllers/authentication.js';
+import { signup,signin, forgotPasswordChange } from '../Controllers/authentication.js';
 import { addAnnouncement, getAnnouncement, updateAnnouncement, deleteAnnouncement, markAccouncementAsRead } from '../Controllers/announcement.js';
 import { addMaterial, getMaterial, updateMaterial, deletematerial } from '../Controllers/material.js';
 import { addTraining, getTraining, updateTraining, deleteTraining, addVideoProgress } from '../Controllers/training.js';
@@ -8,10 +8,11 @@ import { addExam, getExam, updateExam, deleteExam } from '../Controllers/exam.js
 import { addQuestion,deleteQuestion,getQuestion, updateQuestion,addAttemptedQuestion, addResult,getResult, deletAllQuestion } from '../Controllers/question.js';
 import { addConversation, getConversation, getSingleConversation } from '../Controllers/converstion.js';
 import { addMessage, getMessage } from '../Controllers/message.js';
-import { assignManager, changeRole, getManagers, getSignedUser, getUser, updataUser } from '../Controllers/user.js';
+import { assignManager, changeRole, getManagers, getSignedUser, getUser, getUserByEmail, getUserforConversation, updataUser } from '../Controllers/user.js';
 
 router.post("/signup",signup);
 router.post("/signin",signin);
+router.put("/changePassword",forgotPasswordChange);
 
 router.post("/markAnnouncement",markAccouncementAsRead);
 router.post("/announcement",addAnnouncement);
@@ -55,6 +56,9 @@ router.get("/user",getUser);
 router.get("/user/:id",getSignedUser);
 router.put("/user/:id",updataUser);
 router.post("/user-role",changeRole);
+
+router.get("/userforConvo/:amId/:uId",getUserforConversation);
+router.get("/getUser/:email",getUserByEmail);
 
 router.post("/assign-manager",assignManager);
 router.get("/getManager",getManagers);

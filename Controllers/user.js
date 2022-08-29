@@ -13,6 +13,47 @@ export const getUser=(req,res,next)=>{
     })
 }
 
+export const getUserByEmail=(req,res,next)=>{
+    const {email}=req.params
+    connection.query("select * from user where email=?",email,(error, results, fields)=>{
+        if(error){
+            console.log(error);
+            res.status(409).send({status:"failed",err:error});
+            return
+        }
+        
+        res.send({status:"ok",res:results});
+    })
+}
+
+export const getUserforConversation=(req,res,next)=>{
+
+    const {amId}=req.params;
+
+    connection.query("select * from user where role='admin'",(error, results, fields)=>{
+        if(error){
+            console.log(error);
+            res.status(409).send({status:"failed",err:error});
+            return
+        }
+
+        if(amId !== null){
+            connection.query("select * from user where id=?",[+amId],(error, results1, fields)=>{
+                if(error){
+                    console.log(error);
+                    res.status(409).send({status:"failed",err:error});
+                    return
+                }
+                let newArr=[...results,results1[0]]
+                console.log(newArr);
+                res.send({status:"ok",res:newArr});
+            })
+        }else {
+            res.send({status:"ok",res:results});
+        }
+    })
+}
+
 export const changeRole=(req,res)=>{
     const {role,id}=req.body;
     connection.query("UPDATE user SET role=? where id=?",[role,id],(error, results, fields)=>{
@@ -28,8 +69,9 @@ export const changeRole=(req,res)=>{
 
 export const assignManager=(req,res)=>{
     const {uId,mId}=req.body;
+    console.log({uId,mId})
 
-    connection.query("update user set assignedManager=? where id=?",[uId,mId],(error, results, fields)=>{
+    connection.query("update user set assignedManager=? where id=?",[+mId,+uId],(error, results, fields)=>{
         if(error){
             console.log(error);
             res.status(409).send({status:"failed",err:error});

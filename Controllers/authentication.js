@@ -26,3 +26,16 @@ export const signin=(req,res,next)=>{
         res.send({status:"ok",res:results});
     })
 }
+
+export const forgotPasswordChange = (req, res) => {
+    const {id,pass}=req.body;
+
+connection.query("UPDATE user set pass=? where id=?",[pass,id],(err, results) => {
+        if (err) {
+          console.log(err);
+          res.status(409).send({status:"failed",err:error});
+          return
+        }
+        res.send({status:"ok",res:results});
+      });
+  };

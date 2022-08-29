@@ -1,10 +1,9 @@
 import { connection } from "../index.js";
 
 export const addMessage=(req,res,next)=>{
-    const {cId,sId,message,createdTime}=req.body;
-    console.log(req.body);
+    const {cId,sId,message,createdTime,url}=req.body;
 
-    connection.query("INSERT INTO message (cId,sId,message,createdTime) VALUES (?,?,?,?)",[cId,sId,message,createdTime],(error, results, fields)=>{
+    connection.query("INSERT INTO message (cId,sId,message,createdTime,url) VALUES (?,?,?,?,?)",[cId,sId,message,createdTime,url],(error, results, fields)=>{
         if(error){
             console.log(error);
             res.status(409).send({status:"failed",err:error});
@@ -17,8 +16,6 @@ export const addMessage=(req,res,next)=>{
 
 export const getMessage=(req,res,next)=>{
     const {cId}=req.params;
-    console.log("cId============")
-    console.log(cId)
     connection.query("select * from message where cId=?",[cId],(error, results, fields)=>{
         if(error){
             console.log(error);

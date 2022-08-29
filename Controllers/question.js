@@ -118,10 +118,8 @@ export const addResult=(req,res,next)=>{
     const {examId,uId,qId,userChoice,createdTime}=req.body;
     connection.query("select count(*) as totalRows from attemptedquestion where examId=? and uId=?",[examId,uId],(error, results, fields)=>{
         connection.query("select isCorrect from attemptedquestion where examId=? and uId=?",[examId,uId],(error, results1, fields)=>{
-            console.log(results)
             let count=0
             for(let i = 0;i<results1.length;i++){
-                console.log(results1[i].isCorrect === 1)
                 if(results1[i].isCorrect === 1){
                     count++;
                 }
@@ -152,7 +150,6 @@ export const getResult=(req,res,next)=>{
             return
         }
 
-        console.log(results)
         for(let i=0;i<results.length;i++){
             connection.query("select * from exam where id=?",[results[i].examId],(error, results1, fields)=>{
                 if(error){
@@ -179,7 +176,6 @@ export const getResult=(req,res,next)=>{
                         results[i].totalquestion=results1[0].totalquestion;
         
                         if(i === results.length-1){
-                            console.log(results)
                             res.send({status:"ok",res:results});
                         }
                     })

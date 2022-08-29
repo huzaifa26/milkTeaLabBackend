@@ -101,6 +101,7 @@ const io = new Server(httpServer, { cors: { origin: '*' } });
 let users=[]
 
 const addUser = (userId, socketId) => {
+    console.log(userId, socketId);
     !users.some((user) => user.userId === userId) &&
     users.push({ userId, socketId });
   };
@@ -111,6 +112,7 @@ const removeUser = (socketId) => {
 
 const getUser = (userId) => {
     let user=users.find((user) => {
+        console.log(user);
         return +user.userId === +userId
     });
     return user
@@ -122,11 +124,13 @@ io.on("connection",(socket)=>{
         io.emit("getUsers",users);
     })
 
-    socket.on("sendMessage", ({ senderId, recieverId, text }) => {
+    socket.on("sendMessage", ({ senderId, recieverId, text, url }) => {
         const user = getUser(recieverId);
+        console.log({ senderId, recieverId, text, url });
         io.to(user?.socketId).emit("getMessage", {
           senderId,
           text,
+          url,
         });
     });
 

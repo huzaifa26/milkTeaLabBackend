@@ -28,14 +28,12 @@ export const getTraining=(req,res,next)=>{
                     res.status(409).send({status:"failed",err:error});
                     return
                 }
-                console.log("results1")
                 if(results1.length>0){
                     results[i].progress=results1[0].progress
                 }else if(results1.length === 0) results[i].progress= 0
 
 
                 if(i === results.length-1){
-                    console.log(results);
                     res.send({status:"ok",res:results});
                 }
             })
@@ -78,7 +76,7 @@ export const deleteTraining=(req,res,next)=>{
 
 export const addVideoProgress=(req,res,next)=>{
     const {uId,vId,progress}=req.body;
-    console.log(progress)
+    console.log(req.body)
     connection.query("select * from videoProgress where uId=? and vId=?",[uId,vId],(error, results, fields)=>{
         if(error){
             console.log(error);

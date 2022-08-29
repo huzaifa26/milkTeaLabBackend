@@ -40,12 +40,13 @@ export const getExam=(req,res,next)=>{
                     }
                     results[i].totalquestion=results1[0].totalquestion;
                     
-                    connection.query("select result from result where examId=? and uId",[results[i].id,uid],(error, results1, fields)=>{
+                    connection.query("select * from result where examId=? and uId=?",[results[i].id,uid],(error, results1, fields)=>{
                         if(error){
                             console.log(error);
                             res.status(409).send({status:"failed",err:error});
                             return
                         }
+                        console.log([results[i].id,uid])
                         if(results1.length>0){
                             results[i].result=results1[0].result;
                         }else if(results1.length===0){
@@ -53,8 +54,8 @@ export const getExam=(req,res,next)=>{
                         }
                         
                         if(i === results.length-1){
-                            console.log("------------------results---------------------")
-                            console.log(results)
+                        console.log(results);
+
                             res.send({status:"ok",res:results});
                         }
                     })
