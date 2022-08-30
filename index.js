@@ -74,7 +74,7 @@ function handleDisconnect() {
     if (err.code === "PROTOCOL_CONNECTION_LOST") {
       handleDisconnect();
     } else {
-      throw err;
+      console.log(err);
     }
   });
 }
@@ -92,16 +92,17 @@ handleDisconnect();
 // server.listen(3000);
 
 import { createServer } from 'http';
-import { Server } from 'socket.io'; //replaces (import socketIo from 'socket.io')
+import { Server } from 'socket.io';
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, { cors: { origin: '*' } });
 
 
 let users=[]
+console.log(users);
 
 const addUser = (userId, socketId) => {
-    console.log(userId, socketId);
+    console.log("user Connected"+userId);
     !users.some((user) => user.userId === userId) &&
     users.push({ userId, socketId });
   };

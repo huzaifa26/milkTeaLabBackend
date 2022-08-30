@@ -1,9 +1,10 @@
 import { connection } from "../index.js";
 
 export const addAnnouncement=(req,res,next)=>{
-    const {title,description,datetime}=req.body;
+    const {title,description,body,datetime}=req.body;
+    console.log(req.body);
 
-    connection.query("INSERT INTO announcement (title,description,publishedTime) VALUES (?,?,?)",[title,description,datetime],(error, results, fields)=>{
+    connection.query("INSERT INTO announcement (title,description,body,publishedTime) VALUES (?,?,?,?)",[title,description,body,datetime],(error, results, fields)=>{
         if(error){
             console.log(error);
             res.status(409).send({status:"failed",err:error});
