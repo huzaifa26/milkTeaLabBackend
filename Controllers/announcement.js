@@ -46,9 +46,9 @@ export const getAnnouncement=(req,res,next)=>{
 
 
 export const updateAnnouncement=(req,res,next)=>{
-    const {id,title,description,datetime}=req.body;
+    const {id,title,description,body,datetime}=req.body;
 
-    connection.query("UPDATE announcement SET title=?,description=?,publishedTime=? where id=?",[title,description,datetime,id],(error, results, fields)=>{
+    connection.query("UPDATE announcement SET title=?,description=?,body=?,publishedTime=? where id=?",[title,description,body,datetime,id],(error, results, fields)=>{
         if(error){
             console.log(error);
             res.status(409).send({status:"failed",err:error});

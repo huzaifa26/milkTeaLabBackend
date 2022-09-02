@@ -1,3 +1,4 @@
+
 import express from 'express';
 import cors from 'cors';
 import mysql from 'mysql';
@@ -6,8 +7,6 @@ import dotenv from 'dotenv';
 
 const corsOptions ={
     origin:'*', 
-    // origin:'http://localhost:3000', 
-    // origin:'https://huzaifa26.github.io', 
     credentials:true,
     optionSuccessStatus:200
 }

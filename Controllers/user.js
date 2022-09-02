@@ -29,22 +29,22 @@ export const getUserByEmail=(req,res,next)=>{
 export const getUserforConversation=(req,res,next)=>{
 
     const {amId}=req.params;
-
     connection.query("select * from user where role='admin'",(error, results, fields)=>{
         if(error){
             console.log(error);
             res.status(409).send({status:"failed",err:error});
             return
         }
-
-        if(amId !== null){
-            connection.query("select * from user where id=?",[+amId],(error, results1, fields)=>{
+        console.log(req.params);
+        if(amId !== "null" && amId !== null){
+            connection.query("select * from user where id=?",[amId],(error, results1, fields)=>{
                 if(error){
                     console.log(error);
                     res.status(409).send({status:"failed",err:error});
                     return
                 }
                 let newArr=[...results,results1[0]]
+                console.log("----------------results----------------");
                 console.log(newArr);
                 res.send({status:"ok",res:newArr});
             })
@@ -145,6 +145,20 @@ export const getSignedUser=(req,res,next)=>{
             return
         }
         console.log(results);
+        res.send({status:"ok",res:results});
+    })
+}
+
+
+export const getUserforManager=(req,res,next)=>{
+    const {id}=req.params
+    connection.query("select * from user where assignedManager=? or role='admin'",id,(error, results, fields)=>{
+        if(error){
+            console.log(error);
+            res.status(409).send({status:"failed",err:error});
+            return
+        }
+        
         res.send({status:"ok",res:results});
     })
 }

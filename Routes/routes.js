@@ -8,7 +8,7 @@ import { addExam, getExam, updateExam, deleteExam } from '../Controllers/exam.js
 import { addQuestion,deleteQuestion,getQuestion, updateQuestion,addAttemptedQuestion, addResult,getResult, deletAllQuestion } from '../Controllers/question.js';
 import { addConversation, getConversation, getSingleConversation } from '../Controllers/converstion.js';
 import { addMessage, getMessage } from '../Controllers/message.js';
-import { assignManager, changeRole, getManagers, getSignedUser, getUser, getUserByEmail, getUserforConversation, updataUser } from '../Controllers/user.js';
+import { assignManager, changeRole, getManagers, getSignedUser, getUser, getUserByEmail, getUserforConversation, getUserforManager, updataUser } from '../Controllers/user.js';
 
 router.post("/signup",signup);
 router.post("/signin",signin);
@@ -56,6 +56,7 @@ router.get("/user",getUser);
 router.get("/user/:id",getSignedUser);
 router.put("/user/:id",updataUser);
 router.post("/user-role",changeRole);
+router.get("/managerUser/:id",getUserforManager);
 
 router.get("/userforConvo/:amId/:uId",getUserforConversation);
 router.get("/getUser/:email",getUserByEmail);
