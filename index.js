@@ -17,37 +17,14 @@ dotenv.config();
 app.use(express.json());
 app.use(cors(corsOptions));
 
-// export var connection = mysql.createConnection({
-//     host     : 'localhost',
-//     user     : 'root',
-//     password : 'root',
-//     database : 'milktealab',
-//   });
-
 const configuration={
   host     : '35.206.112.94',
   user     : 'u9rxwgdcttirs',
   password : 'uwcvkxbwkysz',
   database : 'dbioubfx6ghrre',
 }
-  
+
 export var connection;
-
-  // export var connection  = mysql.createPool({
-  //   connectionLimit:20,
-  //   host     : '35.206.112.94',
-  //   user     : 'u9rxwgdcttirs',
-  //   password : 'uwcvkxbwkysz',
-  //   database : 'dbioubfx6ghrre',
-  // });
-
-// export var connection = mysql.createConnection({
-//   host     : process.env.HOSTNAME,
-//   user     : process.env.USERNAME,
-//   password : process.env.PASSWORD,
-//   database : process.env.DATABASENAME,
-// });
-
 
 app.get("/",(req,res)=>{
   res.send("working")
@@ -78,17 +55,6 @@ function handleDisconnect() {
   });
 }
 handleDisconnect();
-
-// app.listen(process.env.PORT || 5000,()=>{
-//   console.log("App listening")
-// })
-
-
-// const app = require('express')();
-// const server = require('http').createServer(app);
-// const io = require('socket.io')(server);
-// io.on('connection', () => { /* … */ });
-// server.listen(3000);
 
 import { createServer } from 'http';
 import { Server } from 'socket.io';
