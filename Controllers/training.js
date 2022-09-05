@@ -22,21 +22,25 @@ export const getTraining=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        for (let i=0; i<results.length;i++){
-            connection.query("select * from videoProgress where uId=? and vId=?",[uid,results[i].id],(error, results1, fields)=>{
-                if(error){
-                    res.status(409).send({status:"failed",err:error});
-                    return
-                }
-                if(results1.length>0){
-                    results[i].progress=results1[0].progress
-                }else if(results1.length === 0) results[i].progress= 0
-
-
-                if(i === results.length-1){
-                    res.send({status:"ok",res:results});
-                }
-            })
+        if(results.length === 0){
+            res.send({status:"ok",res:[]});
+        } else if(results.length > 0){
+            for (let i=0; i<results.length;i++){
+                connection.query("select * from videoProgress where uId=? and vId=?",[uid,results[i].id],(error, results1, fields)=>{
+                    if(error){
+                        res.status(409).send({status:"failed",err:error});
+                        return
+                    }
+                    if(results1.length>0){
+                        results[i].progress=results1[0].progress
+                    }else if(results1.length === 0) results[i].progress= 0
+    
+    
+                    if(i === results.length-1){
+                        res.send({status:"ok",res:results});
+                    }
+                })
+            }
         }
     })
 }

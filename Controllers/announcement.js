@@ -23,23 +23,27 @@ export const getAnnouncement=(req,res,next)=>{
             res.status(409).send({status:"failed",err:error});
             return
         }
-        
-        for(let i=0; i<results.length;i++){
-            connection.query("select * from openedAnnouncement where aId=? and uId=?",[results[i].id,uid],(error, results1, fields)=>{
-                if(error){
-                    console.log(error);
-                    res.status(409).send({status:"failed",err:error});
-                    return
-                }
-                if(results1.length>0){
-                    results[i].isOpened=true;
-                }else if(results1.length===0){
-                    results[i].isOpened=false;
-                }
-                if(i===results.length-1){
-                    res.send({status:"ok",res:results});
-                }
-            })
+
+        if(results.length === 0){
+            res.send({status:"ok",res:[]});
+        }else if(results.length > 0){
+            for(let i=0; i<results.length;i++){
+                connection.query("select * from openedAnnouncement where aId=? and uId=?",[results[i].id,uid],(error, results1, fields)=>{
+                    if(error){
+                        console.log(error);
+                        res.status(409).send({status:"failed",err:error});
+                        return
+                    }
+                    if(results1.length>0){
+                        results[i].isOpened=true;
+                    }else if(results1.length===0){
+                        results[i].isOpened=false;
+                    }
+                    if(i===results.length-1){
+                        res.send({status:"ok",res:results});
+                    }
+                })
+            }
         }
     })
 }
