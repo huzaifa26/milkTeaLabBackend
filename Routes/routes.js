@@ -6,7 +6,7 @@ import { addMaterial, getMaterial, updateMaterial, deletematerial } from '../Con
 import { addTraining, getTraining, updateTraining, deleteTraining, addVideoProgress } from '../Controllers/training.js';
 import { addExam, getExam, updateExam, deleteExam } from '../Controllers/exam.js';
 import { addQuestion,deleteQuestion,getQuestion, updateQuestion,addAttemptedQuestion, addResult,getResult, deletAllQuestion } from '../Controllers/question.js';
-import { addConversation, getConversation, getSingleConversation } from '../Controllers/converstion.js';
+import { addConversation, getConversation, getMonitorConversation, getSingleConversation } from '../Controllers/converstion.js';
 import { addMessage, getMessage } from '../Controllers/message.js';
 import { assignManager, changeRole, getManagers, getSignedUser, getUser, getUserByEmail, getUserforConversation, getUserforManager, updataUser } from '../Controllers/user.js';
 
@@ -46,6 +46,7 @@ router.get("/result/:uId",getResult);
 
 router.post("/conversation",addConversation);
 router.get("/conversation/:uId",getConversation);
+router.get("/conversationMonitor/:uId",getMonitorConversation);
 
 router.get("/singleConversation/:uId/:rId",getSingleConversation);
 

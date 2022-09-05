@@ -122,8 +122,47 @@ export const getSingleConversation=(req,res,next)=>{
             
         }
     }
+})
+
+
+
+}
+export const getMonitorConversation=(req,res,next)=>{
+    const {uId}=req.params;
+    connection.query("SELECT * FROM conversation WHERE mId != 1 AND m2Id != 1;",[uId,uId],(error, results, fields)=>{
+        if(error){
+            res.status(409).send({status:"failed",err:error});
+            return
+        }
+
+        let mConv=results
+        let newArr=[]
+        for (let i=0;i<mConv.length;i++){
+            connection.query("SELECT id,firstName,lastName,role,assignedManager FROM user WHERE (id = ?) OR (id = ?);",[mConv[i].mId,mConv[i].m2Id],(error, results1, fields)=>{
+                if(error){
+                    console.log(error);
+                    res.status(409).send({status:"failed",err:error});
+                    return
+                }
+
+                if(results1[0].role==="admin" && results1[1].role==="admin"){
+                    // do nothing
+                } else  if(results1[0].role !== "admin" && results1[1].role !== "admin"){
+                    console.log(mConv[i].m2Id);
+                    console.log(results1[0].assignedManager)
+                    if((results1[0].assignedManager === mConv[i].m2Id || results1[0].assignedManager === mConv[i].mId) || (results1[1].assignedManager === mConv[i].m2Id || results1[1].assignedManager === mConv[i].mId)){
+                        console.log("----------------------------1----------------------------");
+                        console.log(mConv[i],results1)
+                        mConv[i].users=results1
+                        newArr.push(mConv[i]);
+                    }
+                }
+                
+                if(i===mConv.length-1){
+                    console.log(newArr);
+                    res.send({status:"ok",res:newArr});
+                }
+            })
+        }
     })
-
-
-
 }

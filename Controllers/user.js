@@ -98,7 +98,7 @@ export const getManagers=(req,res)=>{
 export const updataUser=(req,res,next)=>{
     const {id}=req.params;
     console.log(id);
-    const {userName,image,oldpass,newpass,phone,mailingAddress,desiredLocation}=req.body;
+    const {firstName,lastName,image,oldpass,newpass,phone,mailingAddress,desiredLocation}=req.body;
 
     if(oldpass !== null){
         connection.query("select * from user where id=?",+id,(error, results, fields)=>{
@@ -108,7 +108,7 @@ export const updataUser=(req,res,next)=>{
                 return
             }
             if(oldpass === results[0].pass){
-                connection.query("Update user set userName=?,image=?,pass=?,phone=?,mailingAddress=?,desiredLocation=? where id=?",[userName,image,newpass,phone,mailingAddress,desiredLocation,+    id],(error, results, fields)=>{
+                connection.query("Update user set firstName=?,lastName=?,image=?,pass=?,phone=?,mailingAddress=?,desiredLocation=? where id=?",[firstName,lastName,image,newpass,phone,mailingAddress,desiredLocation,+    id],(error, results, fields)=>{
                     if(error){
                         console.log(error);
                         res.status(409).send({status:"failed",err:error});
@@ -123,7 +123,7 @@ export const updataUser=(req,res,next)=>{
             // res.send({status:"ok",res:results});
         })
     } else {
-        connection.query("Update user set userName=?,image=?,phone=?,mailingAddress=?,desiredLocation=? where id=?",[userName,image,phone,mailingAddress,desiredLocation,+id],(error, results, fields)=>{
+        connection.query("Update user set firstName=?,lastName=?,image=?,phone=?,mailingAddress=?,desiredLocation=? where id=?",[firstName,lastName,image,phone,mailingAddress,desiredLocation,+id],(error, results, fields)=>{
             if(error){
                 console.log(error);
                 res.status(409).send({status:"failed",err:error});

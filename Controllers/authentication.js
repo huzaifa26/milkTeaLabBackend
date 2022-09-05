@@ -1,9 +1,9 @@
 import { connection } from "../index.js";
 
 export const signup=(req,res,next)=>{
-    const {userName,email,password,phone,mailingAddress,desiredLocation,budget,question}=req.body;
+    const {firstName,lastName,email,password,phone,mailingAddress,desiredLocation,budget,question}=req.body;
     const role='member';
-    connection.query("INSERT INTO user (userName,email,pass,phone,mailingAddress,desiredLocation,budget,question,role) VALUES (?,?,?,?,?,?,?,?,?)",[userName,email,password,phone,mailingAddress,desiredLocation,budget,question,role],(error, results, fields)=>{
+    connection.query("INSERT INTO user (firstName,lastName,email,pass,phone,mailingAddress,desiredLocation,budget,question,role) VALUES (?,?,?,?,?,?,?,?,?,?)",[firstName,lastName,email,password,phone,mailingAddress,desiredLocation,budget,question,role],(error, results, fields)=>{
         if(error){
             console.log(error);
             res.status(409).send({status:"failed",err:error});
