@@ -6,7 +6,7 @@ import router from './Routes/routes.js';
 import dotenv from 'dotenv';
 
 const corsOptions ={
-    origin:'*', 
+    origin:'https://adminpanel.milktealab.com/', 
     credentials:true,
     optionSuccessStatus:200
 }
