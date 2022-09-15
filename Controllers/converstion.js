@@ -145,22 +145,27 @@ export const getMonitorConversation=(req,res,next)=>{
                     return
                 }
 
-                if(results1[0].role==="admin" && results1[1].role==="admin"){
-                    // do nothing
-                } else  if(results1[0].role !== "admin" && results1[1].role !== "admin"){
-                    console.log(mConv[i].m2Id);
-                    console.log(results1[0].assignedManager)
-                    if((results1[0].assignedManager === mConv[i].m2Id || results1[0].assignedManager === mConv[i].mId) || (results1[1].assignedManager === mConv[i].m2Id || results1[1].assignedManager === mConv[i].mId)){
-                        console.log("----------------------------1----------------------------");
-                        console.log(mConv[i],results1)
-                        mConv[i].users=results1
-                        newArr.push(mConv[i]);
+                if(results1.length === 0){
+                    res.send([])
+                    return
+                } else if(results1.length > 1){ 
+                    if(results1[0]?.role==="admin" && results1[1]?.role==="admin"){
+                        // do nothing
+                    } else  if(results1[0].role !== "admin" && results1[1].role !== "admin"){
+                        console.log(mConv[i].m2Id);
+                        console.log(results1[0].assignedManager)
+                        if((results1[0].assignedManager === mConv[i].m2Id || results1[0].assignedManager === mConv[i].mId) || (results1[1].assignedManager === mConv[i].m2Id || results1[1].assignedManager === mConv[i].mId)){
+                            console.log("----------------------------1----------------------------");
+                            console.log(mConv[i],results1)
+                            mConv[i].users=results1
+                            newArr.push(mConv[i]);
+                        }
                     }
-                }
-                
-                if(i===mConv.length-1){
-                    console.log(newArr);
-                    res.send({status:"ok",res:newArr});
+                    
+                    if(i===mConv.length-1){
+                        console.log(newArr);
+                        res.send({status:"ok",res:newArr});
+                    }
                 }
             })
         }
