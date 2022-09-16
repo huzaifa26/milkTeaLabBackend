@@ -6,11 +6,11 @@ import router from './Routes/routes.js';
 import dotenv from 'dotenv';
 
 const corsOptions ={
-    // origin:'https://adminpanel.milktealab.com', 
-    origin:'http://localhost:3000', 
+    origin:'https://adminpanel.milktealab.com', 
+    // origin:'http://localhost:3000', 
     credentials:true,
     optionSuccessStatus:200
-};
+}
 
 const app = express();
 dotenv.config();
