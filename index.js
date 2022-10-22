@@ -19,8 +19,8 @@ app.use(cors(corsOptions));
 
 const configuration={
   host     : '35.206.112.94',
-  user     : 'u9rxwgdcttirs',
-  password : 'uwcvkxbwkysz',
+  user     : 'um3exe2aawyzh',
+  password : 'qelbwou7hicj',
   database : 'dbioubfx6ghrre',
 }
 
